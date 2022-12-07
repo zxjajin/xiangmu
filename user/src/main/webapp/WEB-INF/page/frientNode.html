@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <title>首页</title>
+    <link th:href="@{/static/css/b.css}" href="/static/css/b.css" rel="stylesheet" type="text/css">
+    <style>
+        body{
+            height: 690px;
+        }
+        .bg{
+            width: 80%;
+            height: 100%;
+            margin: 0 auto;
+            background: url("../../static/img/b.jpg");
+            text-align: center;
+        }
+        h4{
+            margin-bottom: 20px;
+        }
+        .bo{
+            width: 410px;
+            margin: 0px auto;
+            padding-top: 100px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="bg">
+    <div class="bo">
+    <h4 th:text="|这是好友${f.name}的留言|"></h4>
+    <div id="s_a">
+        <ul th:each=" node : ${friend}">
+            <li th:text="${node.content}"></li>
+            <li th:text="${node.creatime}"></li>
+        </ul>
+    </div>
+    </div>
+    <div class="y">
+        <a th:if="${page.hasPreviousPage}" th:href="@{/node/page/1?id=}+${uid}">首页</a>
+        <a th:if="${page.hasPreviousPage}" th:href="@{'/node/page/'+${page.prePage}+'?id='+${uid}}">上一页</a>
+        <span th:each="num : ${page.navigatepageNums}">
+       <a th:if="${page.pageNum == num}" style="color: red" th:href="@{'/node/page/'+${num}+'?id='+${uid}}" th:text="|[${num}]|"></a>
+       <a th:if="${page.pageNum != num}"  th:href="@{'/node/page/'+${num}+'?id='+${uid}}" th:text="${num}"></a>
+    </span>
+        <a th:if="${page.hasNextPage}" th:href="@{'/node/page/'+${page.nextPage}+'?id='+${uid}}">下一页</a>
+        <a th:if="${page.hasNextPage}" th:href="@{'/node/page/'+${page.pages}+'?id='+${uid}}">末页</a>
+
+    </div>
+    <a th:href="@{/index}">返回自己留言页面</a>
+</div>
+</body>
+</html>

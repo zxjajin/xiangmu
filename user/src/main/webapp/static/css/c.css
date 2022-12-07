@@ -1,0 +1,27 @@
+*{
+    margin: 0;
+    padding: 0;
+    /*background: #D2E9FF;*/
+    padding: 20px 20px 20px 20px;
+    font: 16px Arial, Helvetica, sans-serif;
+    color: #666;
+}
+a{
+    margin-top: 20px;
+    text-decoration: none;
+}
+
+.body{
+    width: 540px;
+    margin: 120px auto;
+    text-align: center;
+}
+table{
+    border-collapse: collapse;
+    text-align: center;
+    margin-bottom: 15px;
+}
+th,td{
+    padding: 10px 20px;
+    border: 1px solid #66C1E4;
+}

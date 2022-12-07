@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <title>首页</title>
+    <link th:href="@{/static/css/b.css}" href="/static/css/b.css" rel="stylesheet" type="text/css">
+    <style>
+        body{
+            height: 690px;
+        }
+       .bg{
+           width: 80%;
+           height: 100%;
+           margin: 0 auto;
+           background: url("../../static/img/b.jpg");
+           text-align: center;
+        }
+        .bo{
+            width: 410px;
+            margin: 0px auto;
+            padding-top: 50px;
+        }
+        h4{
+            margin-bottom: 10px;
+        }
+        .ly{
+            margin-top: 20px;
+            margin-bottom: 25px;
+        }
+    </style>
+</head>
+<body>
+<div class="bg">
+<div class="bo">
+<h3>欢迎您访问首页！</h3>
+<span th:text="|欢迎您${session.user.name}!|"></span>
+<form th:action="@{/node}" method="post">
+    <input type="hidden" name="uid" th:value="${session.user.id}">
+    请输入您的留言：<input type="text" name="content" />
+    <input type="submit" value="添加">
+</form>
+<div class="ly">
+<h4>留言版</h4>
+<div id="s_a">
+<ul th:each="node : ${session.user.nodeList}">
+    <li th:text="${node.content}"></li>
+    <li th:text="${node.creatime}"></li><span ><a @click="de" id="abc" th:href="@{'/node/'+${node.id}}">删除留言</a></span>
+    <hr>
+</ul>
+</div>
+</div>
+ <div class="y">
+        <a th:if="${page.hasPreviousPage}" th:href="@{/node/page/1}">首页</a>
+        <a th:if="${page.hasPreviousPage}" th:href="@{'/node/page/'+${page.prePage}}">上一页</a>
+        <span th:each="num : ${page.navigatepageNums}">
+       <a th:if="${page.pageNum == num}" style="color: red" th:href="@{'/node/page/'+${num}}" th:text="|[${num}]|"></a>
+       <a th:if="${page.pageNum != num}"  th:href="@{'/node/page/'+${num}}" th:text="${num}"></a>
+    </span>
+        <a th:if="${page.hasNextPage}" th:href="@{'/node/page/'+${page.nextPage}}">下一页</a>
+        <a th:if="${page.hasNextPage}" th:href="@{'/node/page/'+${page.pages}}">末页</a>
+
+ </div>
+<a th:href="@{/user}">查询好友信息</a>
+<form id="fa" method="post">
+    <input type="hidden" name="_method" value="delete" />
+</form>
+</div>
+</div>
+<script th:src="@{/static/js/vue.js}"></script>
+<script th:src="@{/static/js/jquery-1.8.2.min.js}"></script>
+<script>
+    let vue = new Vue({
+        el:'#s_a',
+        methods:{
+            de:function (e){
+                let fo = document.querySelector('#fa')
+                fo.action = e.target.href
+                e.preventDefault()
+                fo.submit()
+            }
+        }
+        }
+    )
+</script>
+<!--原生js实现delete删除-->
+<!--<script>-->
+<!--    //注意有多个a所有要用querySelectorAll-->
+<!--    let a = document.querySelectorAll('#abc')-->
+<!--    for (let i =0;i<a.length;i++){-->
+<!--    a[i].addEventListener('click',function (e){-->
+<!--        let form = document.querySelector('#fa')-->
+<!--        form.action = e.target.href-->
+<!--        form.submit()-->
+<!--        e.preventDefault()-->
+<!--    })-->
+<!--    }-->
+<!--</script>-->
+</body>
+</html>

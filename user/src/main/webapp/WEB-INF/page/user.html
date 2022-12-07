@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/static/css/c.css}" href="../../static/css/c.css" type="text/css">
+</head>
+<body>
+<div class="body">
+<table>
+    <tr>
+        <th>id</th><th>名字</th><th>电话</th><th>性别</th><th>查看留言</th>
+    </tr>
+<tr th:each="user : ${userlist}">
+    <td th:text="${user.id}"></td>
+    <td th:text="${user.name}"></td>
+    <td th:text="${user.phone}"></td>
+    <td th:text="${user.sex}"></td>
+    <td><a th:href="@{/node/}+${user.id}">查看好友的留言</a></td>
+
+<!--    分页查看朋友的留言：<a th:href="@{/node/page/1}"></a>-->
+<!--    password:<td th:text="${user.password}"></td><br>-->
+</tr>
+</table>
+    <a th:href="@{/index}">返回自己留言页面</a>
+</div>
+
+</body>
+</html>

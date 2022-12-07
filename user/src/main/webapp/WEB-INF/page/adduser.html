@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <title>Title</title>
+    <link th:href="@{/static/css/d.css}" href="/static/css/d.css" rel="stylesheet" type="text/css">
+<!--    <link href="/static/css/b.css" rel="stylesheet" type="text/css">-->
+</head>
+<body>
+<form th:action="@{/user}" method="post" class="elegant-aero">
+    <h1>Contact Form
+        <span>Please fill all the texts in the fields.</span>
+    </h1>
+    <label>
+        <span>您的名字 :</span>
+        <input id="name" type="text" name="name" placeholder="Your Full Name" />
+    </label>
+    <label>
+        <span>您的电话 :</span>
+        <input  type="text" name="phone" placeholder="Valid Phone" />
+    </label>
+
+    <label>
+        <span>您的性别 :</span><input class="ra" type="radio" checked ="checked" name="sex" value="男">男
+        <input class="ra" type="radio"  name="sex" value="女">女
+    </label>
+    <label>
+        <span>您的密码 :</span>
+        <input type="password" name="password">
+    </label>
+    <label>
+        <span>&nbsp;</span>
+        <input type="submit" class="button" value="Send" />
+    </label>
+</form>
+</body>
+</html>

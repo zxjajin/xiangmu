@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <title>Document</title>
+    <link type="text/css" th:href="@{/static/css/a.css}" href="/static/css/a.css" rel="stylesheet">
+    <style>
+        body {
+            background-size: 100% 130%;
+            background: url('https://cdn.pixabay.com/photo/2018/08/14/13/23/ocean-3605547_1280.jpg') no-repeat center;
+        }
+    </style>
+</head>
+
+<body>
+<form th:action="@{/login}" method="post">
+<div id="login_box">
+    <h2>登录</h2>
+    <span th:text="${error}"></span>
+    <div id="input_box">
+        <input type="text" value="AJin" name="name" placeholder="请输入用户名">
+    </div>
+    <div class="input_box">
+        <input type="password" value="123456" name="password" placeholder="请输入密码">
+    </div>
+    <button>登录</button><br><br>
+    <a th:href="@{/add}">注册新用户</a>
+</div>
+
+</form>
+</body>
+</html>
